@@ -1,0 +1,187 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background: #f1f1f1;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 42px 20px;
+  background: #f1f1f1;
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.08);
+}
+
+.app {
+  width: min(100%, 900px);
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0 0 28px;
+  color: #333;
+  font-family: "DM Serif Text", cursive;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 400;
+  text-align: center;
+}
+
+.note-form {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: min(100%, 620px);
+  margin: 0 auto 42px;
+}
+
+#note-input {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  min-height: 125px;
+  resize: vertical;
+  padding: 16px;
+  border: 1px solid #e5e5a5;
+  border-radius: 3px;
+  outline: none;
+  background: #fefec0;
+  color: #333;
+  font: 16px/1.5 Arial, sans-serif;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+#note-input:focus {
+  border-color: #c8c86b;
+  box-shadow: 0 0 0 3px rgba(200, 200, 107, 0.2);
+}
+
+.add-button {
+  flex: 0 0 54px;
+  width: 54px;
+  height: 54px;
+  border: 0;
+  border-radius: 4px;
+  background: #fff;
+  color: #11ff00;
+  font: 700 40px/1 Arial, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.add-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.14);
+}
+
+.add-button:active {
+  transform: scale(0.98);
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+}
+
+.note {
+  position: relative;
+  min-height: 170px;
+  padding: 38px 18px 20px;
+  border-radius: 3px;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  animation: note-appear 180ms ease-out;
+}
+
+.note.blue {
+  background: #d1e1ff;
+}
+
+.note.white {
+  background: #fefffe;
+}
+
+.delete-button {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: #e54b3a;
+  color: white;
+  font: 700 16px/1 Arial, sans-serif;
+  cursor: pointer;
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.delete-button:hover {
+  background: #c93628;
+  transform: scale(1.06);
+}
+
+.delete-button:focus-visible,
+.add-button:focus-visible {
+  outline: 3px solid #333;
+  outline-offset: 3px;
+}
+
+.empty-message {
+  margin: 0;
+  color: #777;
+  text-align: center;
+}
+
+.empty-message[hidden] {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes note-appear {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 28px 15px;
+  }
+
+  .note-form {
+    gap: 10px;
+  }
+
+  .add-button {
+    flex-basis: 46px;
+    width: 46px;
+    height: 46px;
+    font-size: 34px;
+  }
+
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+}
